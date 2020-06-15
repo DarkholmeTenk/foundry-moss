@@ -27,17 +27,31 @@ export function fixMagicka(magickaVal, entity) {
     return magicka
 }
 
+function getMagicka(entity) {
+    let data = entity.data.data
+    if(data.resources.magicka) {
+        return {prefix: "data.resources.magicka", ...data.resources.magicka}
+    } else {
+        return {prefix: "data.spells.spell1", ...data.spells.spell1}
+    }
+}
+
 export async function wrap(originalCall, entity, callArgs) {
-    let { value: magickaVal, max: magickaMax } = entity.data.data.resources.magicka
+    let { prefix, value: magickaVal, max: magickaMax } = getMagicka(entity)
     await entity.update(fixSpellSlots(magickaVal, magickaMax, entity))
     let result = await Promise.resolve(originalCall(...callArgs))
-    await entity.update({"data.resources.magicka.value": fixMagicka(magickaVal, entity)})
+    await entity.update({[`${prefix}.value`]: fixMagicka(magickaVal, entity)})
     return result
 }
 
 export default function wrapEntity() {
+    let original = Entity.prototype.useSpell
     Entity.prototype.useSpell = async function (item, { configureDialog = true } = {}) {
         if (item.data.type !== "spell") throw new Error("Wrong Item type");
+        let magickaResource = getMagicka(this)
+        if(!magickaResource) {
+            return original.bind(this)(item, {configureDialog})
+        }
         const itemData = item.data.data;
 
         // Configure spellcasting data
@@ -48,7 +62,7 @@ export default function wrapEntity() {
         let consume = `spell${lvl}`;
         let placeTemplate = false;
 
-        let { value: magickaVal, max: magickaMax } = this.data.data.resources.magicka
+        let { value: magickaVal, max: magickaMax , prefix} = magickaResource
 
         // Configure spell slot consumption and measured template placement from the form
         if (usesSlots && configureDialog) {
@@ -73,7 +87,7 @@ export default function wrapEntity() {
         // Update Actor data
         if (usesSlots && consume && (lvl > 0)) {
             let updateVar = fixSpellSlots(magickaVal - castLvl, magickaMax, this)
-            updateVar[`data.resources.magicka.value`] =  Math.max(magickaVal - castLvl, 0)
+            updateVar[`${prefix}.value`] =  Math.max(magickaVal - castLvl, 0)
             await this.update(updateVar)
         }
 

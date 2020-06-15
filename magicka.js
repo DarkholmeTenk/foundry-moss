@@ -1,12 +1,12 @@
 import ActorSheet5eCharacter from "../../systems/dnd5e/module/actor/sheets/character.js";
+import ActorSheet5eNPC from "../../systems/dnd5e/module/actor/sheets/npc.js";
+import ActorSheet5eBase from "../../systems/dnd5e/module/actor/sheets/base.js";
 import wrapEntity, {wrap} from "./wrapper/entity-spell-wrapper.js"
 import wrapMinorQOL from "./wrapper/minor-qol.js";
 
-Hooks.on('ready', async ()=>{
-    console.log("MOSS | Getting ready")
-    const originalGetData = ActorSheet5eCharacter.prototype.getData;
-    ActorSheet5eCharacter.prototype.getData = function () {
-        const sheetData = originalGetData.call(this);
+function wrapResources(originalCall) {
+    return function() {
+        const sheetData = originalCall.call(this);
         let resource = sheetData.data.resources.magicka || {
             min: 0,
             max: 10,
@@ -25,6 +25,12 @@ Hooks.on('ready', async ()=>{
         sheetData.resources = newArr
         return sheetData
     }
+}
+
+Hooks.on('ready', async ()=>{
+    console.log("MOSS | Getting ready")
+    ActorSheet5eCharacter.prototype.getData = wrapResources(ActorSheet5eCharacter.prototype.getData)
+    ActorSheet5eNPC.prototype.getData = wrapResources(ActorSheet5eNPC.prototype.getData)
 
     wrapEntity()
 
