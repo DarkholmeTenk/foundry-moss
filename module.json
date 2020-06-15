@@ -20,5 +20,8 @@
 	"system": "dnd5e",
 	"styles": [
 		"./css/magicka.css"
-	]
+	],
+	"url": "https://github.com/DarkholmeTenk/foundry-moss",
+	"manifest": "https://raw.githubusercontent.com/DarkholmeTenk/foundry-moss/master/module.json",
+	"download": "https://github.com/DarkholmeTenk/foundry-moss/archive/master.zip"
 }
