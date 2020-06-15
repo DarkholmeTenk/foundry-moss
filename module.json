@@ -1,0 +1,24 @@
+{
+	"name": "moss",
+	"title": "MOSS - Magicka Over Spell Slots",
+	"description": "A module that allows you to replace spell slots with magicka",
+	"version": "1.4.0",
+	"author": "shane_booth",
+	"esmodules": [
+        "magicka.js"
+	],
+	"languages": [
+		{
+			"lang": "en",
+			"name": "English",
+			"path": "lang/en.json"
+		}
+	],
+	"socket": true,
+	"minimumCoreVersion": "0.6.2",
+	"compatibleCoreVersion": "0.6.2",
+	"system": "dnd5e",
+	"styles": [
+		"./css/magicka.css"
+	]
+}
