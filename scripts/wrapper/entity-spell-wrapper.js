@@ -1,6 +1,8 @@
-import Entity from "../../../systems/dnd5e/module/actor/entity.js"
-import SpellCastDialog from "../../../systems/dnd5e/module/apps/spell-cast-dialog.js";
-import AbilityTemplate from "../../../systems/dnd5e/module/pixi/ability-template.js";
+import Entity from "../../../../systems/dnd5e/module/actor/entity.js";
+import AbilityUseDialog from "../../../../systems/dnd5e/module/apps/ability-use-dialog.js";
+import AbilityTemplate from "../../../../systems/dnd5e/module/pixi/ability-template.js";
+
+let SpellCastDialog = AbilityUseDialog
 
 export function fixSpellSlots(magickaVal, magickaMax, entity) {
     let update = {_id: entity.id}

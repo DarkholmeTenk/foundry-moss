@@ -1,8 +1,8 @@
-import ActorSheet5eCharacter from "../../systems/dnd5e/module/actor/sheets/character.js";
-import ActorSheet5eNPC from "../../systems/dnd5e/module/actor/sheets/npc.js";
-import ActorSheet5eBase from "../../systems/dnd5e/module/actor/sheets/base.js";
+import ActorSheet5eCharacter from "../../../../systems/dnd5e/module/actor/sheets/character.js";
+import ActorSheet5eNPC from "../../../../systems/dnd5e/module/actor/sheets/npc.js";
 import wrapEntity, {wrap} from "./wrapper/entity-spell-wrapper.js"
 import wrapMinorQOL from "./wrapper/minor-qol.js";
+import { wrapItem } from "./wrapper/item-wrapper.js";
 
 function wrapResources(originalCall) {
     return function() {
@@ -33,7 +33,7 @@ Hooks.on('ready', async ()=>{
     ActorSheet5eNPC.prototype.getData = wrapResources(ActorSheet5eNPC.prototype.getData)
 
     wrapEntity()
-
+    wrapItem()
     wrapMinorQOL()
 })
 
