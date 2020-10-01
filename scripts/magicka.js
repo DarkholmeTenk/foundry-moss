@@ -1,7 +1,6 @@
 import ActorSheet5eCharacter from "../../../../systems/dnd5e/module/actor/sheets/character.js";
 import ActorSheet5eNPC from "../../../../systems/dnd5e/module/actor/sheets/npc.js";
-import wrapEntity, {wrap} from "./wrapper/entity-spell-wrapper.js"
-import wrapMinorQOL from "./wrapper/minor-qol.js";
+import {wrapUpdateActor} from "./wrapper/entity-spell-wrapper.js"
 import { wrapItem } from "./wrapper/item-wrapper.js";
 
 function wrapResources(originalCall) {
@@ -32,11 +31,7 @@ Hooks.on('ready', async ()=>{
     ActorSheet5eCharacter.prototype.getData = wrapResources(ActorSheet5eCharacter.prototype.getData)
     ActorSheet5eNPC.prototype.getData = wrapResources(ActorSheet5eNPC.prototype.getData)
 
-    wrapEntity()
     wrapItem()
-    wrapMinorQOL()
 })
 
-Hooks.on("renderActorSheet", (sheet)=>{
-
-})
+Hooks.on("preUpdateActor", wrapUpdateActor)

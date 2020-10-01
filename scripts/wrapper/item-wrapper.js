@@ -1,5 +1,4 @@
 import ItemSheet5e from "../../../../systems/dnd5e/module/item/sheet.js";
-import Item5e from "../../../../systems/dnd5e/module/item/entity.js"
 import {DND5E} from "../../../../systems/dnd5e/module/config.js"
 
 export function wrapItem() {
@@ -15,6 +14,4 @@ export function wrapItem() {
 
     DND5E.itemActionTypes.mgre = "DND5E.RegenMagicka",
     DND5E.healingTypes.magi = "DND5E.magickaRegen"
-
-    Item5e.rollAttack
 }
