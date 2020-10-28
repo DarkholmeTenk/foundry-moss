@@ -35,3 +35,4 @@ Hooks.on('ready', async ()=>{
 })
 
 Hooks.on("preUpdateActor", wrapUpdateActor)
+Hooks.on("preUpdateToken", wrapUpdateActor)
