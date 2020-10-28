@@ -26,6 +26,13 @@ function getMagicka(entity, update) {
     return result
 }
 
+export async function wrapUpdateToken(scene, update) {
+    if(scene instanceof Scene) {
+        let token = new Token(scene.getEmbeddedEntity("Token", update._id));
+        wrapUpdateActor(token, update.actorData)
+    }
+}
+
 export async function wrapUpdateActor(entity, update) {
     if(update?.data?.spells) {
         let magicka = getMagicka(entity, update)
