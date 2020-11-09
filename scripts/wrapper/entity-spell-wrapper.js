@@ -38,8 +38,8 @@ export async function wrapUpdateActor(entity, update) {
         let magicka = getMagicka(entity, update)
         let change = 0;
         if(magicka.prefix == "data.spells.spell1" && update.data.spells.spell1) {
-            magicka.max = update.data.spells.spell1.override || magicka.max
-            magicka.value = update.data.spells.spell1.value || magicka.value
+            magicka.max = parseInt(update.data.spells.spell1.override || magicka.max)
+            magicka.value = parseInt(update.data.spells.spell1.value || magicka.value)
         } else {
             for (let i = 1; i <= 9; i++) {
                 let slotName = `spell${i}`;
