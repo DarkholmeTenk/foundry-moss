@@ -26,7 +26,7 @@ function getMagicka(entity, update) {
     return result
 }
 
-export async function wrapUpdateToken(scene, update) {
+export async function wrapUpdateToken(scene, data, update) {
     if(scene instanceof Scene) {
         let token = new Token(scene.getEmbeddedEntity("Token", update._id));
         wrapUpdateActor(token.actor, update.actorData)
