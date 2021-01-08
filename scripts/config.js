@@ -1,7 +1,5 @@
 import { getSettings, loadSettings } from "./wrapper/slot-costs.js";
 
-const prefix = "moss."
-
 const configOptions = [
 	...getSettings()
 ]
@@ -9,7 +7,7 @@ const configOptions = [
 function reload() {
 	let config = {}
 	configOptions.forEach((setting)=>{
-		config[setting.name] = game.settings.get("MOSS", setting.name)
+		config[setting.name] = game.settings.get("moss", setting.name)
 	})
 	loadSettings(config);
 }
@@ -24,7 +22,7 @@ export function registerSettings() {
 			config: true,
 			onChange: reload
 		}
-		game.settings.register("MOSS", setting.name, option)
+		game.settings.register("moss", setting.name, option)
 	})
 	reload();
 }

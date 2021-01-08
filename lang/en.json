@@ -1,3 +1,23 @@
 {
-    "DND5E.AttributeMagicka": "Magicka"
+    "DND5E.AttributeMagicka": "Magicka",
+    "moss.Level0Cost.name": "Cantrip Spell Cost",
+    "moss.Level0Cost.hint": " ",
+    "moss.Level1Cost.name": "Level 1 Spell Cost",
+    "moss.Level1Cost.hint": " ",
+    "moss.Level2Cost.name": "Level 2 Spell Cost",
+    "moss.Level2Cost.hint": " ",
+    "moss.Level3Cost.name": "Level 3 Spell Cost",
+    "moss.Level3Cost.hint": " ",
+    "moss.Level4Cost.name": "Level 4 Spell Cost",
+    "moss.Level4Cost.hint": " ",
+    "moss.Level5Cost.name": "Level 5 Spell Cost",
+    "moss.Level5Cost.hint": " ",
+    "moss.Level6Cost.name": "Level 6 Spell Cost",
+    "moss.Level6Cost.hint": " ",
+    "moss.Level7Cost.name": "Level 7 Spell Cost",
+    "moss.Level7Cost.hint": " ",
+    "moss.Level8Cost.name": "Level 8 Spell Cost",
+    "moss.Level8Cost.hint": " ",
+    "moss.Level9Cost.name": "Level 9 Spell Cost",
+    "moss.Level9Cost.hint": " "
 }
