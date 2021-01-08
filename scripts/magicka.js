@@ -2,6 +2,8 @@ import ActorSheet5eCharacter from "../../../../systems/dnd5e/module/actor/sheets
 import ActorSheet5eNPC from "../../../../systems/dnd5e/module/actor/sheets/npc.js";
 import {wrapUpdateActor, wrapUpdateToken} from "./wrapper/entity-spell-wrapper.js"
 import { wrapItem } from "./wrapper/item-wrapper.js";
+import { addCostTable } from "./wrapper/actor-sheet-wrapper.js";
+import { registerSettings } from "./config.js";
 
 function wrapResources(originalCall) {
     return function() {
@@ -34,5 +36,9 @@ Hooks.on('ready', async ()=>{
     wrapItem()
 })
 
+Hooks.on('init', registerSettings)
+
 Hooks.on("preUpdateActor", wrapUpdateActor)
 Hooks.on("preUpdateToken", wrapUpdateToken)
+Hooks.on("renderActorSheet", addCostTable);
+Hooks.on("renderTokenSheet", addCostTable);

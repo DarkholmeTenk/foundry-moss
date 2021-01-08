@@ -1,8 +1,11 @@
+import { getSlotCost } from "./slot-costs.js"
+
 export function fixSpellSlots(magickaVal, magickaMax, entity) {
     let update = {_id: entity.id}
     for (let i = 1; i <= 9; i++) {
-        let slotVal = Math.floor(magickaVal / i)
-        let slotMax = Math.floor(magickaMax / i)
+        let cost = getSlotCost(i);
+        let slotVal = Math.floor(magickaVal / cost)
+        let slotMax = Math.floor(magickaMax / cost)
         update[`data.spells.spell${i}.value`] = slotVal
         update[`data.spells.spell${i}.override`] = slotMax
     }
@@ -47,7 +50,7 @@ export async function wrapUpdateActor(entity, update) {
                 if(spellData && spellData.value !== undefined) {
                     let current = entity.data.data.spells[slotName]?.value || 0
                     let newVal = spellData.value
-                    change += (newVal - current) * i
+                    change += (newVal - current) * getSlotCost(i);
                 }
             }
         }
