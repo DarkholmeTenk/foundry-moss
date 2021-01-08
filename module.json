@@ -15,8 +15,8 @@
 		}
 	],
 	"socket": true,
-	"minimumCoreVersion": "0.6.2",
-	"compatibleCoreVersion": "0.6.2",
+	"minimumCoreVersion": "0.7.2",
+	"compatibleCoreVersion": "0.7.8",
 	"system": "dnd5e",
 	"styles": [
 		"./css/magicka.css"
